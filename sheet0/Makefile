@@ -1,10 +1,23 @@
-all: executable output source_ex/executable/ex_1 build/main.pdf
+all: executable output source_ex/executable/ex_1 source_ex/executable/ex_2 source_ex/executable/ex_3 build/main.pdf
  
 CC = g++
  
 source_ex/executable/ex_1: source_ex/ex_1.cpp
 	g++ source_ex/ex_1.cpp -o source_ex/executable/ex_1
 	./source_ex/executable/ex_1
+
+source_ex/executable/ex_2: source_ex/ex_2.cpp
+	g++ source_ex/ex_2.cpp -o source_ex/executable/ex_2
+	./source_ex/executable/ex_2
+
+source_ex/executable/ex_3: source_ex/ex_3.cpp
+	g++ source_ex/ex_3.cpp -o source_ex/executable/ex_3
+	./source_ex/executable/ex_3
+
+build/ex_3_symm.pdf: source_ex/ex_3_plot.py source_ex/output/ex_3_symm.txt ../matplotlibrc ../header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source_ex/ex_3_plot.py
+
+build/main.pdf: build/ex_3_symm.pdf
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
