@@ -41,10 +41,10 @@ int main()
     normal_values.clear();
     symm_values.clear();
 
-    steps = 1000;
+    steps = 1e5;
     euler(normal_values, steps, 1);
     symm_euler(symm_values, steps, 1, exp(-10/steps));
-
+ 
     ofstream euler_big("source_ex/output/ex_3_euler_big.txt");
     if (euler_big.is_open())
     {
@@ -53,6 +53,44 @@ int main()
             euler_big << normal_values[i] << "\t" << symm_values[i] << endl;
         }
         euler_big.close();
+    }
+    else
+        cout << "Unable to open file";
+
+    //AUFGABENTEIL b)
+
+    normal_values.clear();
+    symm_values.clear();
+
+    steps = 150;
+
+    euler(normal_values, steps, 1-10.0/steps);
+    symm_euler(symm_values, steps, 1, 1-10.0/steps);
+
+    ofstream euler_small_b("source_ex/output/ex_3_euler_small_b.txt");
+    if (euler_small_b.is_open())
+    {
+        for (int i = 0; i < normal_values.size(); i++)
+        {
+            euler_small_b << normal_values[i] << "\t" << symm_values[i] << endl;
+        }
+        euler_small_b.close();
+    }
+    normal_values.clear();
+    symm_values.clear();
+
+    steps = 1e5;
+    euler(normal_values, steps, 1-10.0/steps);
+    symm_euler(symm_values, steps, 1, 1-10.0/steps);
+ 
+    ofstream euler_big_b("source_ex/output/ex_3_euler_big_b.txt");
+    if (euler_big_b.is_open())
+    {
+        for (int i = 0; i < normal_values.size(); i++)
+        {
+            euler_big_b << normal_values[i] << "\t" << symm_values[i] << endl;
+        }
+        euler_big_b.close();
     }
     else
         cout << "Unable to open file";

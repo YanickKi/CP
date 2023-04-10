@@ -2,15 +2,37 @@
 \subsection*{a)}
 In der Abbildung \ref{fig:euler} ist das exakte Ergebnis und der numerische Weg mit dem (symmetrischen)
 Euler-Verfahren dargestellt.
-Das Zeitintervall $t \in [0, 10]$ wurde bei beiden Verfahren extra in nur 150 Schritte unterteilt,
-damit die Abweichungen klar zu sehen sind.
-Bei dem Euler-Verfahren sind kaum Abweichungen zu erkennen, wobei 
-bei dem symmetrischen Euler-Verfahren vor allen Dingen bei großen Werten von $t$ 
+Das Zeitintervall $t \in [0, 10]$ wurde einerseits in $N = 150$ und andererseits in $N = \num{1e5}$ Schritte 
+unterteilt, so dass Ergebnisse verschiedener Gößenordnungen der Schritte diskutiert werden können.
+Bei dem Euler-Verfahren mit dem Startwert $y_0 = 1$ sind kaum Abweichungen zu erkennen, wobei 
+bei dem symmetrischen Euler-Verfahren mit den Startwerten $y_0 = 1$ und $y_1 = \symup{e}^{-\symup{\Delta}t}$ vor allen Dingen bei großen Werten von $t$ 
 starke Oszillationen zu verzeichen sind.
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{build/ex_3.pdf}
-    \caption{SMALLExakte und mit dem (symmetrischen) Euler-Verfahren (150 Schritte) ermittelte
-    Ergebnisse.}
+    \caption{Exakte (Exakt) und mit dem Euler (Euler) - bzw. symmetrischen Euler-Verfahren (Symm.) numerisch ermittelten Funktionswerte für
+    $N = 150$ und $N = \num{1e5}$ Schritte. 
+    Startwert Euler-Verfahren: $y_0 = 1$. Startwerte symmetrisches Eulerverfahren: $y_0 = 1$ und $y_1 = \symup{e}^{-\symup{\Delta}t}$.}
     \label{fig:euler}
+\end{figure} 
+\subsection*{b)}
+In der Abbildung \ref{fig:euler_b} sind erneut die Ergebnisse wie in Aufgabenteil a) aufgetragen, nur mit dem Unterschied, dass 
+die Startwerte geändert wurden.
+Dise betragen nun beim Euler-Verfahren $y_0 = 1 - \symup{\Delta}t$ und beim symmetrischen Euler-Verfahren 
+$y_0 = 1$ und $y_1 = 1 - \symup{\Delta}t$.
+Bei dem Euler-Verfahren lassen sich bei $N=150$ Schritten klar größere Abweichungen als in Aufgabenteil a) erkennen, während bei $N = \num{1e5}$
+Schritten keine größeren Abweichungen zu verzeichen sind.
+Es zeigen sich deutliche Verbesserungen bei dem symmetrischen Euler-Verfahren. 
+Bereits bei $N = 150$ Schritten sind die Ausschläge von knapp 500 auf 20 gesunken, 
+während bei $N = \num{1e5}$ Schritten keine höhere Ungenauigkeit als bei dem Euler-Verfahren zu erkennen sind.
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{build/ex_3_b.pdf}
+    \caption{Exakte (Exakt) und mit dem Euler (Euler) - bzw. symmetrischen Euler-Verfahren (Symm.) numerisch ermittelten Funktionswerte für
+    $N = 150$ und $N = \num{1e5}$ Schritte.
+    Startwert Euler-Verfahren: $y_0 = 1 - \symup{\Delta}t$. 
+    Startwerte symmetrisches Eulerverfahren: $y_0 = 1$ und $y_1 = 1 - \symup{\Delta}t$.}
+    \label{fig:euler_b}
 \end{figure}
+Daraus lässt sich schließen, dass die Anfangsbedingungen eine große Auswirkung auf die Stabilität des numerischen Verfahrens haben.
+To be continued...

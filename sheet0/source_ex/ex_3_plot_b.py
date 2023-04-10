@@ -1,8 +1,8 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
 
-normal_values_small, symm_values_small = np.genfromtxt('source_ex/output/ex_3_euler_small.txt', unpack = True)
-normal_values_big, symm_values_big = np.genfromtxt('source_ex/output/ex_3_euler_big.txt', unpack = True)
+normal_values_small, symm_values_small = np.genfromtxt('source_ex/output/ex_3_euler_small_b.txt', unpack = True)
+normal_values_big, symm_values_big = np.genfromtxt('source_ex/output/ex_3_euler_big_b.txt', unpack = True)
 
 
 t_plot = np.linspace(0, 10, normal_values_small.size)
@@ -30,4 +30,4 @@ for i in range(2):
         axs[i,j].legend()
 
 plt.tight_layout()
-plt.savefig("build/ex_3.pdf")
+plt.savefig("build/ex_3_b.pdf")

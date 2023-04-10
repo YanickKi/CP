@@ -14,10 +14,13 @@ source_ex/executable/ex_3: source_ex/ex_3.cpp
 	g++ source_ex/ex_3.cpp -o source_ex/executable/ex_3
 	./source_ex/executable/ex_3
 
-build/ex_3.pdf: source_ex/ex_3_plot.py ../matplotlibrc ../header-matplotlib.tex | build
+build/ex_3.pdf: source_ex/ex_3_plot.py source_ex/output/ex_3_euler_small.txt source_ex/output/ex_3_euler_big.txt ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source_ex/ex_3_plot.py
 
-build/main.pdf: build/ex_3.pdf
+build/ex_3_b.pdf: source_ex/ex_3_plot_b.py source_ex/output/ex_3_euler_small_b.txt source_ex/output/ex_3_euler_big_b.txt ../matplotlibrc ../header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source_ex/ex_3_plot_b.py
+
+build/main.pdf: build/ex_3.pdf build/ex_3_b.pdf
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
