@@ -1,1 +1,46 @@
 \section*{Aufgabe 2}
+Im Allgemeinenen haben wir hier einfach die Subtraktion von fast gleichen Zahlen vermieden
+\subsection*{a)}
+\begin{align*}
+    f(x) &= \frac{1}{\sqrt{x}} - \frac{1}{\sqrt{x+1}}
+    = \frac{\sqrt{x+1 - \sqrt{x}}}{\sqrt{x+1}\sqrt{x}}
+    = \frac{\sqrt{x+1} - \sqrt{x}}{\sqrt{x+1}\sqrt{x}} \frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}} \\
+    &= \frac{x+1-x}{x \sqrt{x+1} + (x+1)\sqrt{x}}  =
+    \frac{1}{x \sqrt{x+1} + (x+1)\sqrt{x}}
+\end{align*}
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{build/ex_2_a.pdf}
+    \caption{lol}
+    \label{fig:a}
+\end{figure}
+\FloatBarrier
+\subsubsection*{b)}
+Text
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{build/ex_2_b.pdf}
+    \caption{lol}
+    \label{fig:b}
+\end{figure}
+
+\begin{equation*}
+    f(x) = \frac{1- \cos (x)}{\sin (x)} = \frac{2\sin^2(\frac{x}{2})}{\sin(x)}
+\end{equation*}
+\FloatBarrier
+\subsubsection*{c)}
+Text
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{build/ex_2_c.pdf}
+    \caption{lol}
+    \label{fig:c}
+\end{figure}
+\begin{align*}
+    f(x) &= \sin(x + \delta) - \sin(x)                                                              \\
+    &= \sin(x) \cos(\delta) + \cos(x) \sin (\delta) - \sin(x)                                       \\
+    &= \sin(x) (\cos(\delta) -1) + \cos(x) \sin(\delta)                                             \\
+    &= \cos(x) \sin(\delta) + \sin(x) (\cos(\delta) -1) \frac{(\cos(\delta) +1)}{(\cos(\delta) +1)} \\
+    &= \cos(x) \sin(\delta) + \frac{\sin(x) (\cos^2(\delta) - 1)}{(\cos(\delta) +1)}                \\
+    &= \cos(x) \sin(\delta) + \frac{\sin(x) \sin^2(\delta)}{(\cos(\delta) +1)}                      \\
+\end{align*}  
