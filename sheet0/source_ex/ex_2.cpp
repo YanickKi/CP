@@ -55,14 +55,14 @@ int main() {
   for(int i = 0; i < 1000000; i++){
     x_small.push_back(1e-8 +  5 * i/100000000000000.0);
     x_big.push_back(1e12+ i/1000000.0);
-    x_period.push_back(3.14 - i/1000000.0);
+    x_period.push_back(3.14 * (1-i/1000000.0));
   }
   a(x_big, a_bad);
   a_new(x_big, a_good);
   b(x_small, b_bad);
   b_new(x_small, b_good);
-  c(x_period, 1e-10, c_bad);
-  c_new(x_period, 1e-8, c_good);
+  c(x_period, 1e-15, c_bad);
+  c_new(x_period, 1e-15, c_good);
   rel_err(a_bad, a_good, a_rel);
   rel_err(b_bad, b_good, b_rel);
   rel_err(c_bad, c_good, c_rel);
