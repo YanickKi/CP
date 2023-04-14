@@ -4,7 +4,7 @@ Die Abweichungen sind in Prozent angegeben.
 \subsection*{a)}
 \begin{align*}
     f(x) &= \frac{1}{\sqrt{x}} - \frac{1}{\sqrt{x+1}}
-    = \frac{\sqrt{x+1 - \sqrt{x}}}{\sqrt{x+1}\sqrt{x}}
+    = \frac{\sqrt{x+1} - \sqrt{x}}{\sqrt{x+1}\sqrt{x}}
     = \frac{\sqrt{x+1} - \sqrt{x}}{\sqrt{x+1}\sqrt{x}} \frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}} \\
     &= \frac{x+1-x}{x \sqrt{x+1} + (x+1)\sqrt{x}}  =
     \frac{1}{x \sqrt{x+1} + (x+1)\sqrt{x}}
@@ -12,6 +12,7 @@ Die Abweichungen sind in Prozent angegeben.
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{build/ex_2_a.pdf}
+    \caption{Plot zum Aufgabenteil a).}
 \end{figure}
 Irgendwie liegen beide Formen der Funktion bei Null aber die relative Abweichung ist ungleich Null und sieht sehr komisch aus.
 \FloatBarrier
@@ -19,6 +20,7 @@ Irgendwie liegen beide Formen der Funktion bei Null aber die relative Abweichung
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{build/ex_2_b.pdf}
+    \caption{Plot zum Aufgabenteil b).}
 \end{figure}
 \begin{equation*}
     f(x) = \frac{1- \cos (x)}{\sin (x)} = \frac{2\sin^2(\frac{x}{2})}{\sin(x)}
@@ -34,7 +36,7 @@ Wir wundern uns etwas darüber, dass die Funktionen bei Null liegen aber der rel
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{build/ex_2_c.pdf}
-    \caption{$\delta = \num{1e-15}$}
+    \caption{Plot zum Aufgabenteil c). $\delta = \num{1e-15}$}
     \label{fig:c}
 \end{figure}
 \begin{align*}
