@@ -10,6 +10,11 @@ void zweipunkt(vector <float>& deriv, float upper, float lower, float step_size)
     deriv.push_back((upper - lower)/(2 * step_size));
 }
 
+void zweipunkt_second(vector<float>& sec_deriv, float upper, float mid, float lower, float step_size){
+  sec_deriv.push_back((upper - 2 * mid + lower)/(4 * pow(step_size, 2)));
+}
+
+
 int main () {
   //part a)
  
@@ -64,7 +69,6 @@ int main () {
       error << -numbers::pi + 2 * numbers::pi * i/num_points << "\t" << num_deriv[i] << "\t"
       << ana_deriv[i] << "\t" << abs((num_deriv[i] - ana_deriv[i])/ana_deriv[i]) << endl;
     } 
-
   }
   else cout << "Unable to open file";
 
@@ -72,24 +76,39 @@ int main () {
 
   vector<float> num_sec_deriv;
   vector<float> ana_sec_deriv;
-  for(int i = 0; i < num_points; i += 2){
-    zweipunkt(num_sec_deriv, num_deriv[i+1], num_deriv[i], h);
+
+  f1.clear();
+
+  double h_sec = 0.1;
+
+  for(int i = 0; i < num_points; i++){
+    f1.push_back(sin((-numbers::pi + 2 * numbers::pi * i/num_points - 2 * h_sec)));
+    f1.push_back(sin((-numbers::pi + 2 * numbers::pi * i/num_points)));
+    f1.push_back(sin((-numbers::pi + 2 * numbers::pi * i/num_points + 2 * h_sec)));
+  }
+
+  cout << "f1: " << f1.size() << endl;
+  for(int i = 0; i < num_points; i += 3){
+    zweipunkt_second(num_sec_deriv, f1[i+2], f1[i+1], f1[i], h_sec);
   }
 
   for(int i = 0; i < num_points; i++){
     ana_sec_deriv.push_back(-sin(-numbers::pi + 2 * numbers::pi * i/num_points));
   }
 
-  ofstream sec_deriv ("source/output/ex_1b  .txt");
+  cout << "anna: " << ana_sec_deriv.size() << endl 
+  << "num: " << num_sec_deriv.size();
+
+  ofstream sec_deriv ("source/output/ex_1b.txt");
   if (sec_deriv.is_open())
   {
     sec_deriv << "x\t" << "numerical\t" << "analytical\t" << "relative_error" << endl;
-    for(int i = 0; i < num_deriv.size(); i++){
+    for(int i = 0; i < num_sec_deriv.size(); i++){
       sec_deriv << -numbers::pi + 2 * numbers::pi * i/num_points << "\t" << num_sec_deriv[i] << "\t"
-      << ana_deriv[i] << "\t" << abs((num_sec_deriv[i] - ana_sec_deriv[i])/ana_sec_deriv[i]) << endl;
+      << ana_sec_deriv[i] << "\t" << abs((num_sec_deriv[i] - ana_sec_deriv[i])/ana_sec_deriv[i]) << endl;
     } 
-
   }
   else cout << "Unable to open file";
+
   return 0;
 }
