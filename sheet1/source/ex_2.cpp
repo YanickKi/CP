@@ -20,7 +20,7 @@ double functiona(double x){
     return exp(-x)/x;
     }
 }
-vector <double>& derivative
+
 double Trapez(double a, double b, int N, double (*function)(double)){
     double h = (b-a)/N;
     double value = h/2.0 * ((*function)(a)+ (*function)(b));
