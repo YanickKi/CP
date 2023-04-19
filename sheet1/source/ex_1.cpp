@@ -14,7 +14,6 @@ void zweipunkt_second(vector<float>& sec_deriv, float upper, float mid, float lo
   sec_deriv.push_back((upper - 2 * mid + lower)/(4 * pow(step_size, 2)));
 }
 
-
 int main () {
   //part a)
  
@@ -27,7 +26,7 @@ int main () {
     f1.push_back(sin(x+(i+1)/max_steps));
   }
 
-  for(int i = 0; i < max_steps; i += 2){
+  for(int i = 0; i < f1.size(); i += 2){
     zweipunkt(num_deriv, f1[i+1], f1[i], (i+1)/max_steps);
   }
 
@@ -53,7 +52,7 @@ int main () {
     f1.push_back(sin((-numbers::pi + 2 * numbers::pi * i/num_points + h )));
   }
 
-  for(int i = 0; i < num_points; i += 2){
+  for(int i = 0; i < f1.size(); i += 2){
     zweipunkt(num_deriv, f1[i+1], f1[i], h);
   }
 
@@ -87,17 +86,13 @@ int main () {
     f1.push_back(sin((-numbers::pi + 2 * numbers::pi * i/num_points + 2 * h_sec)));
   }
 
-  cout << "f1: " << f1.size() << endl;
-  for(int i = 0; i < num_points; i += 3){
+  for(int i = 0; i < f1.size(); i += 3){
     zweipunkt_second(num_sec_deriv, f1[i+2], f1[i+1], f1[i], h_sec);
   }
 
   for(int i = 0; i < num_points; i++){
     ana_sec_deriv.push_back(-sin(-numbers::pi + 2 * numbers::pi * i/num_points));
   }
-
-  cout << "anna: " << ana_sec_deriv.size() << endl 
-  << "num: " << num_sec_deriv.size();
 
   ofstream sec_deriv ("source/output/ex_1b.txt");
   if (sec_deriv.is_open())

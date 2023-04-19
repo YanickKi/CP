@@ -38,3 +38,11 @@ clean:
 FORCE:
 
 .PHONY: all clean
+
+
+#-wall (für Warnungen, falls beim Kompilieren Fehler auftreten)
+#-Wextra (für mehr Warnungen) 
+#-O0 (für schneller kompilieren ist das Default -0x) 
+#-03 (für mehr optimizer (kompilieren braucht lange aber kann sich bei riesen programmen lohnen))
+#-march = native (passt an Architektur des Rechners an)
+#-ffast-math (optimiert floating point operationen, kann sein, dass größere numerische Abweichungen auftreten) 
