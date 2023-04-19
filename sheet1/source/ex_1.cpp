@@ -161,6 +161,37 @@ int main()
   else
     cout << "Unable to open file";
 
+  vector<float> f2;
+  vector<float> num_vier;
 
+  num_deriv.clear();
+  ana_deriv.clear();
+
+  float x;
+  for(int i = 0; i < num_points; i++){
+    x = -numbers::pi + 2 * numbers::pi * i / num_points; 
+    if(x-h < 0){
+      f2.push_back(2 * floor(x/(numbers::pi)) + cos(fmod(x, numbers::pi)) + 1);
+    }  
+    if(x-h >= 0){
+      f2.push_back(2 * floor(x/(numbers::pi)) - cos(fmod(x, numbers::pi)) + 1);
+    }
+
+    if(x+h < 0){
+      f2.push_back(2 * floor(x/(numbers::pi)) + cos(fmod(x, numbers::pi)) + 1);
+    }
+
+    if(x+h >= 0){
+      f2.push_back(2 * floor(x/(numbers::pi)) - cos(fmod(x, numbers::pi)) + 1);
+    }
+  }
+  for(int i = 0; i < f2.size(); i += 2){
+  zweipunkt(num_deriv, f2[i+1], f2[i], h);
+  }
+
+
+  
   return 0;
 }
+
+// O pana!
