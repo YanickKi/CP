@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <numbers>
+#include <functional>
 using namespace std;
 
 
@@ -33,6 +34,16 @@ void zweipunkt(vector<float>& deriv, vector<float>& x, float (*function)(float),
     }
 }
 
+//calculate 2nd derivative with four point rule
+
+void vierpunkt(vector<float>& deriv, vector<float>& x, float (*function)(float), float h){
+    for (int i = 0; i < x.size(); i++){
+        deriv.push_back(
+          (-(*function)(x[i]+2*h) + 8*(*function)(x[i]+h) - 8 * (*function)(x[i]-h) + (*function)(x[i]-2*h)) / (2*h)
+          );
+    }
+}
+
 // calculate 2nd derivative numerically with two point method
 
 void sec_zweipunkt(vector<float>& deriv, vector<float>& x, float (*function)(float), float h){
@@ -49,12 +60,25 @@ void ana_deriv(vector<float>& ana, vector<float>& x, float (*function)(float)){
   }
 }
 
+// define function f2 from sheet
+
+float f2(float x){
+  if(x>= 0){
+    return 2 * floor(x/numbers::pi) - cos(fmod(x, numbers::pi)) + 1;
+  }
+  else{
+    return 2 * floor(x/numbers::pi) + cos(fmod(x, numbers::pi)) + 1;
+  }
+}
+
 int main(){
 
-  //first part of a)
+  /* ############################# part a) ############################# */
+
+  //first half of a)
 
     float max_steps = 1000.0; // number of steps
-    vector<float> num;        // save derivative, caluclated numerically
+    vector<float> num;        // vector for derivative, calculated numerically
 
   // calculate derivative numerically in dependene on step size at x = 0
 
@@ -83,7 +107,7 @@ int main(){
 
   vector<float> x, ana; // x-values and a vector to save the analytical derivation
   num.clear();
-  float h = 0.3; //step size for the rest of this exercise;
+  float h = 0.3; // step size for the rest of this exercise;
 
   for (int i = 0; i < max_steps; i++){
       x.push_back(-numbers::pi  + 2 * numbers::pi * i/max_steps);     // create vector of x-values for the rest of exercise 1
@@ -93,15 +117,39 @@ int main(){
   ana_deriv(ana, x, cos);
   write(x, num, ana, "source/output/ex_1a_error.txt");
 
-  // part b)
+  /* ############################# part b) ############################# */
 
   num.clear();
   ana.clear();
 
-  //sec_zweipunkt(num, x, sin, h);
-  //ana_deriv(ana, x, sin));
-  //
-  //return 0;
+  sec_zweipunkt(num, x, sin, h);
+  ana_deriv(ana, x, [] (float y) { return - sin(y) ;});
+
+  write(x, num, ana, "source/output/ex_1b.txt");
+
+  /* ############################# part c) ############################# */
+
+  num.clear();
+  ana.clear();
+
+  vierpunkt(num, x, sin, h);
+  ana_deriv(ana, x, cos);
+
+  write(x, num, ana, "source/output/ex_1c.txt");
+
+    /* ############################# part d) ############################# */
+
+
+  vector<float> twopoint;   // save derivative from two- and fourpoint in new vectors for readability
+  vector<float> fourpoint;
+
+  zweipunkt(twopoint, x, f2, h);  
+  vierpunkt(fourpoint, x, f2, h); 
+
+  /* care: there is no analytial derivaiton here, instead it is the numerical 
+  derivation with the fourpoint rule, when writing to txt*/
+
+  write(x, fourpoint, twopoint, "source/output/ex_1d.txt");  
 
 }
 /* 
