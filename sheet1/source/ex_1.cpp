@@ -5,6 +5,114 @@
 #include <numbers>
 using namespace std;
 
+
+// write saves data to a txt
+
+void write(vector<float>& arg, vector<float>& num, vector<float>& ana, string filename){
+      ofstream file(filename.c_str());
+  if (file.is_open()){
+    file    << "arg\t"                              // create header for readability in txt 
+            << "numerical\t"
+            << "analytical\t"
+            << "relative_error" << endl;
+
+    for (int i = 0; i < arg.size(); i++)
+    {
+      file  << arg[i] << "\t" << num[i] << "\t" << ana[i] << "\t" << abs((num[i] - ana[i]) / ana[i]) << endl;
+    }
+  }
+  else
+    cout << "Unable to open file";
+}
+
+// calculate first derivative numerically with two point method 
+
+void zweipunkt(vector<float>& deriv, vector<float>& x, float (*function)(float), float h){
+    for (int i = 0; i < x.size(); i++){
+        deriv.push_back(((*function)(x[i]+h) - (*function)(x[i]-h)) / (2*h));
+    }
+}
+
+// calculate 2nd derivative numerically with two point method
+
+void sec_zweipunkt(vector<float>& deriv, vector<float>& x, float (*function)(float), float h){
+    for (int i = 0; i < x.size(); i++){
+        deriv.push_back(((*function)(x[i]+2* h) - 2 * (*function)(x[i]) + (*function)(x[i]-2*h)) / (4* pow(h,2)));
+    }
+}
+
+// calculate any derivative analytically, function is already the function of the derivative
+
+void ana_deriv(vector<float>& ana, vector<float>& x, float (*function)(float)){
+  for(int i = 0; i < x.size(); i++){
+    ana.push_back((*function)(x[i]));
+  }
+}
+
+int main(){
+
+  //first part of a)
+
+    float max_steps = 1000.0; // number of steps
+    vector<float> num;        // save derivative, caluclated numerically
+
+  // calculate derivative numerically in dependene on step size at x = 0
+
+    for(int i = 0; i < max_steps; i++){
+        num.push_back(
+            (sin((i+1)/max_steps) - sin(-(i+1)/max_steps)) / (2 * (i+1)/max_steps)
+        );                                                                            
+    }
+
+    // saving in txt
+
+    ofstream file("source/output/ex_1a.txt");
+    if (file.is_open()){
+    file    << "arg\t"
+            << "numerical\t" 
+            << endl;
+    for (int i = 0; i < num.size(); i++)
+    {
+      file  << (i+1)/max_steps << "\t" << num[i] << endl;
+    }
+  }
+  else
+    cout << "Unable to open file";
+
+  // 2nd half of a)
+
+  vector<float> x, ana; // x-values and a vector to save the analytical derivation
+  num.clear();
+  float h = 0.3; //step size for the rest of this exercise;
+
+  for (int i = 0; i < max_steps; i++){
+      x.push_back(-numbers::pi  + 2 * numbers::pi * i/max_steps);     // create vector of x-values for the rest of exercise 1
+  } 
+  
+  zweipunkt(num, x, sin, h);
+  ana_deriv(ana, x, cos);
+  write(x, num, ana, "source/output/ex_1a_error.txt");
+
+  // part b)
+
+  num.clear();
+  ana.clear();
+
+  //sec_zweipunkt(num, x, sin, h);
+  //ana_deriv(ana, x, sin));
+  //
+  //return 0;
+
+}
+/* 
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cmath>
+#include <numbers>
+using namespace std;
+
 void zweipunkt(vector<float> &deriv, float upper, float lower, float step_size)
 {
   deriv.push_back((upper - lower) / (2 * step_size));
@@ -167,7 +275,6 @@ int main()
   num_deriv.clear();
   ana_deriv.clear();
 
-  float x;
   for(int i = 0; i < num_points; i++){
     x = -numbers::pi + 2 * numbers::pi * i / num_points; 
     if(x-h < 0){
@@ -195,3 +302,5 @@ int main()
 }
 
 // O pana!
+
+*/
