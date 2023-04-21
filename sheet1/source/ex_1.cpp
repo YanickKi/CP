@@ -10,7 +10,7 @@ using namespace std;
 // write saves data to a txt
 
 void write(vector<float>& arg, vector<float>& num, vector<float>& ana, string filename){
-      ofstream file(filename.c_str());
+      ofstream file(filename.c_str());  // iostream functions deal with const char* rather than string
   if (file.is_open()){
     file    << "arg\t"                              // create header for readability in txt 
             << "numerical\t"
@@ -145,7 +145,7 @@ int main(){
   vierpunkt(fourpoint, x, f2, h); 
 
   /* care: there is no analytial derivation here, instead it is the numerical 
-  derivation with the fourpoint rule, when writing to txt*/
+  derivation with the fourpoint rule, when writing to txt */
 
   write(x, fourpoint, twopoint, "source/output/ex_1d.txt"); 
 
