@@ -9,7 +9,12 @@ void equations(vector<double>& vec, double r, double z, double psi, vector<doubl
   vec.push_back(cos(psi));
   vec.push_back(sin(psi));
   //cout << "r = " << r <<endl;
-  vec.push_back(params[0] - params[1] * z - sin(psi) / r);
+  if(r == 0){
+    vec.push_back((params[0] - params[1])/2. * z);
+  }
+  else{
+    vec.push_back(params[0] - params[1] * z - sin(psi) / r);
+  }
   //cout <<  "vec[2]" <<vec[2] <<endl;
 
 
@@ -24,8 +29,6 @@ void RK4(vector<vector<double>>& val, vector<double>& init, vector<double>& para
   val.push_back(init);
 
   // actual caclulation of vector<double>&the vector
-
-
 
   vector<double> k1{}, k2{}, k3{}, k4{}, temp{};
   int iter = 0;
@@ -49,8 +52,6 @@ void RK4(vector<vector<double>>& val, vector<double>& init, vector<double>& para
     temp.clear();
     iter += 1;
   }
-
-
 }
 
 
@@ -62,16 +63,15 @@ int main () {
 
   RK4(vec, init, params, step_size);
 
-
-
-  ofstream myfile ("source/output/ex_2a.txt");
+  ofstream myfile ("source/output/ex_2c.txt");
 
   if (myfile.is_open())
   {
     myfile << "s\t" << "r\t" << "z\t" << "psi" << endl;
     for(int i = 0; i < vec.size(); i++){
+      myfile << step_size * i;
       for(int j = 0; j < 3; j++){
-        myfile << step_size * i << "\t" << vec[j][i] << "\t";//HIER CHECKEN OB ES DIE RICHTIGEN ELEMENTE SIND
+        myfile << "\t" << vec[i][j] << "\t";//HIER CHECKEN OB ES DIE RICHTIGEN ELEMENTE SIND
       }
       myfile << endl;
     }

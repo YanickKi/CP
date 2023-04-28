@@ -1,1 +1,48 @@
 \section*{Aufgabe 1}
+\subsection*{a)}
+Folgende Ersetzungen haben wir gemacht:
+\begin{align*}
+    r   & \to r     = a r' \\
+    s   & \to s     = a s' \\
+    z   & \to z     = a z' \\
+    p_L & \to p_L = \frac{\gamma}{a} p_L'
+\end{align*}
+mit den gestrichelten Größen als dimensionsliose Größen.
+Somit nehmen die Formgleichungen folgende Gestalt an
+\begin{align*}
+    \frac{a\, \symup{d}r'}{a \, \symup{d}s'} &= \frac{\symup{d}r' }{\symup{d}s'} = \cos(\Psi)  \\
+    \frac{a\, \symup{d}z'}{a \, \symup{d}s'} &= \frac{\symup{d}z'}{\symup{d}s'} = \sin(\Psi) \\
+    \frac{\symup{d}\Psi}{ a \, \symup{d}s'} &=  \frac{1}{a} p_L' - \frac{\rho g a z'}{\gamma} - \frac{\sin(\Psi)}{a r'}.
+\end{align*}
+Die dritte Formgleichung umgestellt ergibt 
+\begin{equation*}
+    \frac{\symup{d}\Psi}{\symup{d}s'} = p_L' - \frac{\rho g a^2 z'}{\gamma} - \frac{\sin(\Psi)}{r'} .
+\end{equation*}
+Nun haben wir $\mu = \rho g a^2$ definiert, was konstant ist. 
+Dieses $\mu$ lässt sich nun ebenfalls in Einheiten von der Oberflächenspannung $\gamma$ angeben,
+womit die Formgleichungen final als 
+\begin{align*}
+    \frac{\symup{d}r'}{\symup{d}s'} &= \cos(\Psi)   \\
+    \frac{\symup{d}z'}{\symup{d}s'} &= \sin(\Psi)   \\
+    \frac{\symup{d}\Psi}{\symup{d}s'} &=  p_L' - \mu' z' - \frac{\sin(\Psi)}{r'}
+\end{align*}
+geschrieben werden können.
+Im Folgenden werden die Striche weggelassen und nur mit den dimensionslosen 
+Formgleichungen gerechnet.
+\subsection*{b)}
+to be continued..
+\FloatBarrier
+\subsection*{c)}
+Hier haben wir eine Schrittweite von $h=\num{1e-4}$ verwendet.
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{build/ex_2c_r.pdf}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{build/ex_2c_z.pdf}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{build/ex_2c_psi.pdf}
+\end{figure}
