@@ -3,7 +3,7 @@ all: executable output source/executable/ex_2 build/main.pdf
 CC = g++
  
 source/executable/ex_2: source/ex_2.cpp
-	g++ -std=c++20 source/ex_2.cpp -o source/executable/ex_1
+	g++ -std=c++20 source/ex_2.cpp -o source/executable/ex_2
 	./source/executable/ex_2
 
 build/ex_2c_r.pdf build/ex_2c_z.pdf build/ex_2c_psi.pdf: source/ex_2.py source/output/ex_2c.txt ../matplotlibrc ../header-matplotlib.tex | build
