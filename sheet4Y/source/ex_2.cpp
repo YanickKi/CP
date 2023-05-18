@@ -15,9 +15,8 @@ const int timeSteps = 1000, length = 1, N = length/dx; // N is number of spacial
 void write(vector<vector<double>>& vec, string filename){
   ofstream file(filename.c_str());
     if (file.is_open()){
-    for(int l = vec.at(0).size()-1; l >= 0; l--){
-      /* start the summation from end, higher y will be up */
-      for (int j = 0; j < vec.size(); j++){
+    for(int l = 0; l < vec.at(0).size(); l++){
+      for(int j = 0; j < vec.size(); j++){
         file << vec.at(j).at(l) << "\t";
       }
     file << endl;
@@ -44,7 +43,7 @@ int main(){
 
     /* Aufgabenteil a) */
 
-    double dt = 0.00001;
+    double dt = 0.00003;
 
     FTCS(u, uInit, dt);
     write(u, "source/output/2a.txt");  
@@ -67,7 +66,7 @@ int main(){
 
     /* Aufgabenteil c) */
 
-    dt = 0.00001; // reliable step size
+    dt = 0.00003; // reliable step size
 
     FTCS(u, uInit, dt);
     write(u, "source/output/2c_1.txt");  

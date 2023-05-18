@@ -13,8 +13,10 @@ source/executable/ex_2: source/ex_2.cpp
 build/1b.pdf build/1c.pdf build/1c_analytical.pdf build/1d.pdf build/1e.pdf build/1d_E.pdf build/1e_E.pdf: source/ex_1.py source/output/1b.txt source/output/1c.txt source/output/1c_analytical.txt source/output/1d.txt source/output/1e.txt source/output/1d_Ex.txt source/output/1d_Ey.txt source/output/1e.txt source/output/1e_Ex.txt source/output/1e_Ey.txt ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source/ex_1.py
 
+build/2a.mp4 build/2b_stable.mp4 build/2b_unstable.mp4 build/2c_1.mp4 build/2c_2.mp4 build/2c_3.mp4: source/ex_2.py source/output/2a.txt source/output/2b_stable.txt source/output/2b_unstable.txt source/output/2c_1.txt source/output/2c_2.txt source/output/2c_3.txt ../matplotlibrc ../header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source/ex_2.py
 
-build/main.pdf: build/1b.pdf build/1c.pdf build/1c_analytical.pdf build/1d.pdf build/1e.pdf build/1d_E.pdf build/1e_E.pdf
+build/main.pdf: build/1b.pdf build/1c.pdf build/1c_analytical.pdf build/1d.pdf build/1e.pdf build/1d_E.pdf build/1e_E.pdf build/2a.mp4 build/2b_stable.mp4 build/2b_unstable.mp4 build/2c_1.mp4 build/2c_2.mp4 build/2c_3.mp4
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
