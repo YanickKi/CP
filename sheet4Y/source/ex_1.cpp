@@ -27,10 +27,29 @@ void write(vector<vector<double>>& vec, string filename){
     cout << "Unable to open file";
 }
 
-void calcE(vector<vector<double>>& phi, vector<vector<double>>& E){
-  for(int j = 1; j< N-1; j++){
-    for(int l =1; l<N-1; l++){
-      E.at(j).at(l) = - 1/(2*delta) * ( phi.at(j+1).at(l) -  phi.at(j-1).at(l) +  phi.at(j).at(l+1) -  phi.at(j).at(l-1));
+void calcE(vector<vector<double>>& phi, vector<vector<vector<double>>>& E){
+  for(int i = 1; i < N-1; i++){
+    E.at(0).at(0).at(i)   = - 1/delta     * (phi.at(1).at(i)    -phi.at(0).at(i));
+    E.at(1).at(0).at(i)   = - 1/(2*delta) * (phi.at(0).at(i+1)  -phi.at(0).at(i-1));
+    E.at(0).at(N-1).at(i) = - 1/delta     * (phi.at(N-1).at(i)  -phi.at(N-2).at(i));
+    E.at(1).at(N-1).at(i) = - 1/(2*delta) * (phi.at(N-1).at(i+1)-phi.at(N-1).at(i-1));
+    E.at(0).at(i).at(0)   = - 1/(2*delta) * (phi.at(i+1).at(0)  -phi.at(i-1).at(0));
+    E.at(1).at(i).at(0)   = - 1/delta     * (phi.at(i).at(1)-phi.at(i).at(0));
+    E.at(0).at(i).at(N-1) = - 1/(2*delta) * (phi.at(i+1).at(N-1)-phi.at(i-1).at(N-1));
+    E.at(1).at(i).at(N-1) = - 1/delta     * (phi.at(i).at(N-1)-phi.at(i).at(N-2));
+  }
+  E.at(0).at(0).at(0)     = - 1/delta * (phi.at(1).at(0)    - phi.at(0).at(0));
+  E.at(1).at(0).at(0)     = - 1/delta * (phi.at(0).at(1)    - phi.at(0).at(0));
+  E.at(0).at(N-1).at(0)   = - 1/delta * (phi.at(N-1).at(0)  - phi.at(N-2).at(0));
+  E.at(1).at(N-1).at(0)   = - 1/delta * (phi.at(N-1).at(1)  - phi.at(N-1).at(0));
+  E.at(0).at(N-1).at(N-1) = - 1/delta * (phi.at(N-1).at(N-1)- phi.at(N-2).at(N-1));
+  E.at(1).at(N-1).at(N-1) = - 1/delta * (phi.at(N-1).at(N-1)- phi.at(N-1).at(N-2));
+  E.at(0).at(0).at(N-1)   = - 1/delta * (phi.at(1).at(N-1)  - phi.at(0).at(N-1));
+  E.at(1).at(0).at(N-1)   = - 1/delta * (phi.at(0).at(N-1)  - phi.at(0).at(N-2));
+  for(int j = 1; j < N-1; j++){
+    for(int l = 1; l < N-1; l++){
+      E.at(0).at(j).at(l) = - 1/(2*delta) * (phi.at(j+1).at(l) - phi.at(j-1).at(l));
+      E.at(1).at(j).at(l) = - 1/(2*delta) * (phi.at(j).at(l+1) - phi.at(j).at(l-1));
     }
   }
 }
@@ -87,7 +106,7 @@ int main (){
   for(int j = 0; j < N; j++){
     for(int l = 0; l < N; l++){
       for(int n = 1; n <= 100; n++){
-        phi.at(j).at(l) += (2*(1-cos(n*numbers::pi)))/(n*numbers::pi*sinh(n*numbers::pi))*sin(n*numbers::pi*j*delta)*sinh(n*numbers::pi*l*delta);      }
+        phi.at(j).at(l) += (2*(1-cos(n*numbers::pi)))/(n*numbers::pi*sinh(n*numbers::pi))*sin(n*numbers::pi*j*delta)*sinh(n*numbers::pi*l*delta);}
     }
   }
   
@@ -95,7 +114,7 @@ int main (){
   
   /* Aufgabenteil d) */
 
-  vector<vector<double>> E (N, vector<double>(N, 0));
+  vector<vector<vector<double>>> E (2, vector<vector<double>> (N, vector<double> (N)));
 
   fill(phi.begin(), phi.end(), vector<double> (N,0));
   rho.at(N/2-1).at(N/2-1) = 1;
@@ -103,13 +122,13 @@ int main (){
   GaussSeidel(phi, rho);
   calcE(phi, E);
   write(phi, "source/output/1d.txt");
-  write(E, "source/output/1d_E.txt");
-
+  write(E.at(0), "source/output/1d_Ex.txt");
+  write(E.at(1), "source/output/1d_Ey.txt");
   /* Aufgabenteil e) */
 
   fill(phi.begin(), phi.end(), vector<double> (N,0));
-  rho.at(N/2-1).at(N/2-1) = 0;
 
+  rho.at(N/2-1).at(N/2-1) = 0;
   for(int i = 0; i <= 1; i++){
     for(int j = 0; j <= 1; j++){
     rho.at(N/4 + i * N/2 - 1 ).at(N/4 + j * N/2 - 1) = pow(-1, i+j);
@@ -119,6 +138,7 @@ int main (){
   GaussSeidel(phi, rho);
   calcE(phi, E);
   write(phi, "source/output/1e.txt");
-  write(E, "source/output/1e_E.txt");
+  write(E.at(0), "source/output/1e_Ex.txt");
+  write(E.at(1), "source/output/1e_Ey.txt");
   return 0;
 }

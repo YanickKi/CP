@@ -10,7 +10,7 @@ source/executable/ex_2: source/ex_2.cpp
 	g++ -std=c++20 source/ex_2.cpp -o source/executable/ex_2
 	./source/executable/ex_2
 
-build/1b.pdf build/1c.pdf build/1c_analytical.pdf build/1d.pdf build/1e.pdf build/1d_E.pdf build/1e_E.pdf: source/ex_1.py source/output/1b.txt source/output/1c.txt source/output/1c_analytical.txt source/output/1d.txt source/output/1e.txt source/output/1d_E.txt source/output/1e_E.txt ../matplotlibrc ../header-matplotlib.tex | build
+build/1b.pdf build/1c.pdf build/1c_analytical.pdf build/1d.pdf build/1e.pdf build/1d_E.pdf build/1e_E.pdf: source/ex_1.py source/output/1b.txt source/output/1c.txt source/output/1c_analytical.txt source/output/1d.txt source/output/1e.txt source/output/1d_Ex.txt source/output/1d_Ey.txt source/output/1e.txt source/output/1e_Ex.txt source/output/1e_Ey.txt ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source/ex_1.py
 
 
