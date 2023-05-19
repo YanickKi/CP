@@ -1,0 +1,46 @@
+\section{Aufgabe 2}
+\subsection*{a)}
+Als erstes muss man die Varibalen diskretisieren:
+\begin{equation*}
+    u(x,y,t) \to u(i \symup{\Delta}x, j\symup{\Delta}y, n \symup{\Delta}t) = u_{i,j}^n
+\end{equation*}
+mit den Schrittweiten $\symup{\Delta}x, \symup{\Delta}y, \symup{\Delta}t$ in $x$-, $y$- Richtung und in der Zeit.
+Nun nutze einfach die Approximation der zweiten Ableitung.
+\begin{align*}
+    \partial_x u_{x,y,t} &= \frac{u_{i+1,j}^n -2 u_{i,j}^n + u_{i-1,j}^n }       {\symup{\Delta}x^2}\\
+    \partial_y u_{x,y,t} &= \frac{u_{i,j+1}^n -2 u_{i,j}^n + u_{i,j-1}^n }       {\symup{\Delta}y^2}\\
+    \partial_t u_{x,y,t} &= \frac{u_{i,j}^{n+1} -2 u_{i,j}^{n} + u_{i,j}^{n-1} }   {\symup{\Delta}t^2}
+\end{align*}
+Die partiellen Ableitungen werden dann in die zweidimensionale Wellengleichung eingesetzt, so dass sich 
+\begin{align*}
+    \frac{u_{ij}^{n+1} -2 u_{i,j}^{n} + u_{i,j}^{n-1} }   {\symup{\Delta}t^2} &= c^2
+    \left ( \frac{u_{i+1,j}^n -2 u_{i,j}^n + u_{i-1,j}^n } {\symup{\Delta}x^2} + \frac{u_{i,j+1}^n -2 u_{i,j}^n + u_{i,j-1}^n } {\symup{\Delta}y^2} \right ) \\
+    \iff u_{ij}^{n+1} -2 u_{i,j}^{n} + u_{i,j}^{n-1} &= 
+    c^2 \symup{\Delta} t^2 \left ( \frac{u_{i+1,j}^n -2 u_{i,j}^n + u_{i-1,j}^n } {\symup{\Delta}x^2} + \frac{u_{i,j+1}^n -2 u_{i,j}^n + u_{i,j-1}^n } {\symup{\Delta}y^2} \right )
+\end{align*}
+ergibt.
+\subsection*{c)}
+Aus der Bedingung $\partial_t u = 0$ folgt 
+\begin{equation}
+    \frac{u_{i,j}^1 - u_{i,j}^{-1}}{2\symup{\Delta}t } = 0 \iff u_{i,j}^1 = u_{i,j}^{-1}. \label{eqn:dt0}
+\end{equation}
+Hier wurde einfach die Ableitung bei dem Index $n=0$ benutzt.
+Hier wird jedoch noch $u_{i,j}^{-1}$ benötigt.
+Dazu wird in der Wellengleichung $n=0$ gesetzt, so dass 
+\begin{align*}
+    u_{ij}^{1} -2 u_{i,j}^{0} + u_{i,j}^{-1} &= c^2 \symup{\Delta} t^2 
+    \left ( \frac{u_{i+1,j}^0 -2 u_{i,j}^0 + u_{i-1,j}^0 } {\symup{\Delta}x^2} 
+    + \frac{u_{i,j+1}^0 -2 u_{i,j}^0 + u_{i,j-1}^0 } {\symup{\Delta}y^2} \right ) \\
+    \iff u_{i,j}^-1 &= c^2 \symup{\Delta} t^2 
+    \left ( \frac{u_{i+1,j}^0 -2 u_{i,j}^0 + u_{i-1,j}^0 } {\symup{\Delta}x^2} 
+    + \frac{u_{i,j+1}^0 -2 u_{i,j}^0 + u_{i,j-1}^0 } {\symup{\Delta}y^2} \right ) + 2 u_{i,j}^0 - u_{i,j}^1
+\end{align*}
+folgt.
+Dieses Resultat wird in Gleichung \eqref{eqn:dt0} eingesetzt, so dass 
+\begin{equation*}
+    u_{i,j}^1 = \frac{c^2 \symup{\Delta} t^2}{2}
+    \left ( \frac{u_{i+1,j}^0 -2 u_{i,j}^0 + u_{i-1,j}^0 } {\symup{\Delta}x^2} 
+    + \frac{u_{i,j+1}^0 -2 u_{i,j}^0 + u_{i,j-1}^0 } {\symup{\Delta}y^2} \right ) + u_{i,j}^0
+\end{equation*}
+folgt.
+Da $u_{i,j}^0$ für alle $i,j$ bekannt ist, lässt sich $u_{i,j}^1$ so ermitteln.
