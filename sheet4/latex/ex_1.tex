@@ -1,0 +1,102 @@
+\section*{Aufgabe 1}
+\subsection*{a)}
+Für das Elektrische Feld wurde die 2-Punkt Regel für die Differentiation innerhalb und der standard Differenzenquotient an den Ränder verwendet.
+\subsection*{b)}
+In Abbildung \ref{fig:1bg} ist das Ergebnis für das Potential und das elektrische Feld des Algorithmus dargestellt.
+Dabei wurden die Randbedingungen $\phi = 0$ und die Anfangsbedingungen $\phi(x,y) = 0$ im inneren verwendet. Zudem wurde keine Ladung eingefügt.
+Es ist zu erkennen, dass das Potential und das elektrische Feld nicht Perfekt zentriert sind. Dies ist wahrscheinlich eine Folge der geringen Anzahl an Gitterplätzen.
+Sonst funktioniert der Algorithmus sehr gut.
+\begin{figure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1a.pdf}
+        \caption{$\phi(x,y)$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1b_el.pdf}
+        \caption{$\vec{\text{E}}(x,y)$}
+    \end{subfigure}
+    \caption{Potential und elektrisches Feld für die Randbedingungen aus der b)}
+    \label{fig:1bg}
+\end{figure}
+
+\FloatBarrier
+\subsection*{c)}
+In Abbildung \ref{fig:1c} sind die Ergebnisse des Algorithmus dargestellt. Dabei wurde zu den Bedingungen aus der b), die Randbedingung
+$\phi(x, y = 1) = 1$ hinzugefügt. 
+Die analytische Lösung
+\begin{equation}
+    \text{\Phi}(x,y) = \sum_{n-1}^\infty \frac{2(1-\cos(n\pi))}{n\pi \sinh(n\pi)} \cdot \sin(n\pi x)\sinh(n\pi y)
+\end{equation}
+wurde bis $n = 200$ iteriert, da danach zu große Fehler bzw. Unendlichkeitsprobleme auftreten.
+\\
+Verglichen mit der analytischen Lösung in Abbildung \ref{fig:1ce} fällt auf, dass die Abbildungen sehr ähnlich sind.
+Der Auffälligste Unterschied ist, dass im Algorithmus ein sehr starker Sprung an den Ecken Auftritt, während die analytische Lösung dort relativ smooth
+übergeht. Dies ist eine Folge der Randbedingungen, welche in dem Algorithmus fest sind, während sie in der analytischen Lösung scheinbar nicht fest sind.
+
+\begin{figure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1c.pdf}
+        \caption{Numerische Lösung}
+        \label{fig:1c}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1c_an.pdf}
+        \caption{Analytische Lösung}
+        \label{fig:1ce}
+    \end{subfigure}
+    \caption{Numerische und analytische Lösung von $\phi$ der Randbedingungen aus der Aufgabe c)}
+    \label{fig:1cg}
+\end{figure}
+
+
+
+\FloatBarrier
+\subsection*{d)}
+Durch eine hinzugefügte Ladung mit $q = +1$ am Ort $\vec{r} = (0.5, 0.5)$ ergibt sich ein maximum des Potentials an diesem Ort.
+Dieses führt zu einem sphärisch abnehmenden Elektrischen Feld, was mit den Erwartungen übereinstimmt. Die beiden größen sind in Abbildung \ref{fig:1dg} dargestellt.
+\begin{figure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1d.pdf}
+        \caption{$\phi(x,y)$}
+        \label{fig:1d}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1d_el.pdf}
+        \caption{$\vec{\text{E}}(x,y)$}
+        \label{fig:1de}
+    \end{subfigure}
+    \caption{Potential und elektrisches Feld für die Randbedingungen aus der d)}
+    \label{fig:1dg}
+\end{figure}
+\FloatBarrier
+\subsection*{e)}
+Die vier eingefügten Ladungen in diesem Aufgabenteil führen zu einem Quadrupol. 
+Potential und Feld von diesem sind in Abbildung \ref{fig:1eg} dargestellt.
+Das Potential verläuft wie es zu erwarten ist, bei vier Ladungen mit verschiedenen Vorzeichen.
+
+\begin{figure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1e.pdf}
+        \caption{$\phi(x,y)$}
+        \label{fig:1e}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/ex_1e_el.pdf}
+        \caption{$\vec{\text{E}}(x,y)$}
+        \label{fig:1ee}
+    \end{subfigure}
+    \caption{Potential und elektrisches Feld für die Randbedingungen aus der e)}
+    \label{fig:1eg}
+\end{figure}
