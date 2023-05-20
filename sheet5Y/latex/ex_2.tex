@@ -20,7 +20,7 @@ Die partiellen Ableitungen werden dann in die zweidimensionale Wellengleichung e
 \end{align*}
 ergibt.
 \subsection*{c)}
-Aus der Bedingung $\partial_t u = 0$ folgt 
+Aus der Bedingung $\partial_t u\bigr |_{t=0} = 0$ folgt mit der symmetrischen Zweipunktsformel 
 \begin{equation}
     \frac{u_{i,j}^1 - u_{i,j}^{-1}}{2\symup{\Delta}t } = 0 \iff u_{i,j}^1 = u_{i,j}^{-1}. \label{eqn:dt0}
 \end{equation}
@@ -31,7 +31,7 @@ Dazu wird in der Wellengleichung $n=0$ gesetzt, so dass
     u_{ij}^{1} -2 u_{i,j}^{0} + u_{i,j}^{-1} &= c^2 \symup{\Delta} t^2 
     \left ( \frac{u_{i+1,j}^0 -2 u_{i,j}^0 + u_{i-1,j}^0 } {\symup{\Delta}x^2} 
     + \frac{u_{i,j+1}^0 -2 u_{i,j}^0 + u_{i,j-1}^0 } {\symup{\Delta}y^2} \right ) \\
-    \iff u_{i,j}^-1 &= c^2 \symup{\Delta} t^2 
+    \iff u_{i,j}^{-1} &= c^2 \symup{\Delta} t^2 
     \left ( \frac{u_{i+1,j}^0 -2 u_{i,j}^0 + u_{i-1,j}^0 } {\symup{\Delta}x^2} 
     + \frac{u_{i,j+1}^0 -2 u_{i,j}^0 + u_{i,j-1}^0 } {\symup{\Delta}y^2} \right ) + 2 u_{i,j}^0 - u_{i,j}^1
 \end{align*}
@@ -44,3 +44,18 @@ Dieses Resultat wird in Gleichung \eqref{eqn:dt0} eingesetzt, so dass
 \end{equation*}
 folgt.
 Da $u_{i,j}^0$ für alle $i,j$ bekannt ist, lässt sich $u_{i,j}^1$ so ermitteln.
+\subsection*{d)}
+Um die Wellengleichung dimemensionslos zu machen, wird zunächst die Zeit mit einem beliebigen $t_0$ reskaliert
+\begin{equation*}
+    t \to t' = \frac{t}{t_0} \iff t = t_0 t'.
+\end{equation*}
+Die Ortsvariablen lassen sich demnach zu 
+\begin{equation*}
+    x \to x' = \frac{x}{c t_0} \iff x = t_0 c x' \quad y \to y' = \frac{y}{c t_0} \iff y = t_0 c y'
+\end{equation*}
+umdefinieren.
+Diese Koordinatentransformation in die Wellengleichung eingesetzt, liefert 
+\begin{align*}
+    \frac{\partial^2 u }{t_0^2 \partial t'^2} &= c^2 \left ( \frac{\partial^2 u }{t_0^2 c^2 \partial x'^2} + \frac{\partial^2 u }{t_0^2 c^2  \partial y'^2}\right ) \\
+    \frac{\partial^2 u }{\partial t'^2} &= \left ( \frac{\partial^2 u }{ \partial x'^2} + \frac{\partial^2 u }{\partial y'^2}\right ).
+\end{align*}
