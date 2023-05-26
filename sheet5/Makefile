@@ -1,4 +1,4 @@
-all: executable output  build/main.pdf	
+all: executable output build/main.pdf	
  
 CC = g++
  
@@ -6,18 +6,18 @@ CC = g++
 #	g++ source/ex_1.cpp -o source/executable/ex_1
 #	./source/executable/ex_1
 
-source/executable/ex_2 2e_99.txt: source/ex_2.cpp
+source/executable/ex_2 source/output/2e_99.txt: source/ex_2.cpp
 	g++ -std=c++20 source/ex_2.cpp -o source/executable/ex_2
 	./source/executable/ex_2
 
-source/executable/ex_1 1e_0.txt: source/ex_1.cpp
+source/executable/ex_1 source/output/1e_0.txt: source/ex_1.cpp
 	g++ -std=c++20 source/ex_1.cpp -o source/executable/ex_1
 	./source/executable/ex_1
 
-build/2e_99.pdf: source/ex_2.py 2e_99.txt ../matplotlibrc ../header-matplotlib.tex | build
+build/2e_99.pdf: source/ex_2.py source/output/2e_99.txt ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source/ex_2.py
 
-build/ex_1.mp4: source/ex_1.py source/output/1c_0.txt ../matplotlibrc ../header-matplotlib.tex | build
+build/ex_1.mp4: source/ex_1.py source/output/1e_0.txt ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python source/ex_1.py
 
 build/main.pdf: build/2e_99.pdf build/ex_1.mp4

@@ -1,0 +1,24 @@
+\section*{Aufgabe 1}
+\subsection*{Teilaufgabe a)}
+In der Schrödingergleichung 
+\begin{equation*}
+    \symup{i} \hbar \partial_t \Psi  =- \frac{\hbar^2}{2m} \partial_x^2 \Psi + \frac{1}{2}m \omega^2 x^2 \Psi
+\end{equation*}
+wird zunächst die Substitution $t = \sfrac{\omega \tau}{2}$ eingesetzt, so dass sich 
+\begin{align*}
+    \symup{i} \hbar \frac{\omega}{2}\partial_{\tau} \Psi &=- \frac{\hbar^2}{2m} \partial_x^2 \Psi + \frac{1}{2}m \omega^2 x^2 \Psi \\
+    \symup{i} \partial_{\tau} \Psi &=- \frac{\hbar}{\omega m} \partial_x^2 \Psi + \frac{m\omega}{\hbar} x^2 \Psi 
+\end{align*}
+ergibt.
+Mit der Definition $\xi = \sqrt{\frac{m\omega}{\hbar}}$ folgt 
+\begin{equation*}
+    \symup{i} \partial_{\tau} \Psi =- \partial_{\xi}^2 \Psi + \xi^2 \Psi .
+\end{equation*}
+Die charakteristische Energieskala ist im Bereich von $\hbar \omega$.
+\subsection*{c)}
+Der Anfangsvektor $\Psi ( \xi, 0)$ ist einfach eine Gaußkurve.
+Die Dimension dieses Vektors ist $\sfrac{20}{0.1} + 1 = 201$.
+\subsection*{e)}
+Die Animation \verb|ex_1.mp4|   befindet sich im Ordner. 
+In der Animation ist die Wahrscheinlichkeitsdichte $|\Psi|^2$ gegen $\xi$ aufgetragen.
+Nach einer gewissen Zeit kommnen Oszillationen hinzu, wobei wir nicht wissen woher die kommen (irgendeine Asymmetrie? oder numerische Fehler?).

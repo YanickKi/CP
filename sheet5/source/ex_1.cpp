@@ -5,7 +5,7 @@
 using namespace std;
 
 const double dxi = 0.1, dtau = 0.02;
-const int D = 20/dxi, timeSteps = 10/dtau;
+const int D = 20/dxi+1, timeSteps = 20/dtau;
 Eigen::VectorXd xi = Eigen::VectorXd::LinSpaced(D,-10,10);
 
 void write(Eigen::VectorXd & vector, string filename){
@@ -34,7 +34,7 @@ Eigen::MatrixXcd timeEv(){
   Eigen::MatrixXd hinten = Eigen::MatrixXd::Zero(D,D);
 
   for(int n = 0; n < D; n++){
-    hinten(n,n) = (n+1)*(n+1);
+    hinten(n,n) = (n-100)*(n-100);
   }
  // calculate Hamilton Matrix
   Eigen::MatrixXd H(D,D);

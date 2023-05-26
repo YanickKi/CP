@@ -59,3 +59,18 @@ Diese Koordinatentransformation in die Wellengleichung eingesetzt, liefert
     \frac{\partial^2 u }{t_0^2 \partial t'^2} &= c^2 \left ( \frac{\partial^2 u }{t_0^2 c^2 \partial x'^2} + \frac{\partial^2 u }{t_0^2 c^2  \partial y'^2}\right ) \\
     \frac{\partial^2 u }{\partial t'^2} &= \left ( \frac{\partial^2 u }{ \partial x'^2} + \frac{\partial^2 u }{\partial y'^2}\right ).
 \end{align*}
+\subsection*{e)}
+Hier haben wir eine Zeitschrittweite von $\symup{\Delta} t = \num{1e-5}$ gewählt.
+\begin{figure}
+    \begin{subfigure}{0.48 \textwidth}
+        \centering
+        \includegraphics[height = 5cm]{build/2e_0.pdf}
+        \caption{Deflection-field bei $t = 0$ (Initialfeld).}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48 \textwidth}  
+        \centering  
+        \includegraphics[height = 5cm]{build/2e_6.pdf}
+        \caption{Deflection-field bei $t = 6 \symup{\Delta}t$ also nach 6 Zeitschritten.}
+    \end{subfigure}
+\end{figure}

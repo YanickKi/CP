@@ -12,6 +12,8 @@ def f(u,n):
     #plt.yticks([0, 5, 10, 15, 19], [1, 0.75, 0.5, 0.25, 0])
     plt.xlabel(r'$x$')
     plt.ylabel(r'$y$')
+    plt.yticks([0, 50, 100, 149], [1.5, 1, 0.5, 0])
+    plt.xticks([0, 50, 99], [0, 0.5, 1])
     plt.savefig(f'build/2e_{n}.pdf')
 
 
